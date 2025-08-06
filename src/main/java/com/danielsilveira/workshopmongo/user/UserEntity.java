@@ -1,10 +1,14 @@
 package com.danielsilveira.workshopmongo.user;
 
+import com.danielsilveira.workshopmongo.post.PostEntity;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection="user")
@@ -16,6 +20,9 @@ public class UserEntity implements Serializable {
     private String id;
     private String name;
     private String email;
+
+    @DBRef(lazy=true)
+    private List<PostEntity> posts = new ArrayList<>();
 
     public UserEntity() {
     }
@@ -49,6 +56,14 @@ public class UserEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<PostEntity> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<PostEntity> posts) {
+        this.posts = posts;
     }
 
     @Override

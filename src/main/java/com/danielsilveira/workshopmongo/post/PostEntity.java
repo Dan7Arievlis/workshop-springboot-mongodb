@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-@Document
+@Document(collection = "post")
 public class PostEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
