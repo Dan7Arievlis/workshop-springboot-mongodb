@@ -53,12 +53,12 @@ public class UserEntity implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof UserEntity user)) return false;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email);
+        if (!(o instanceof UserEntity that)) return false;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email);
+        return Objects.hashCode(id);
     }
 }
