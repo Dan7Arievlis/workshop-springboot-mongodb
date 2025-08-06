@@ -1,5 +1,6 @@
 package com.danielsilveira.workshopmongo.user;
 
+import com.danielsilveira.workshopmongo.post.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,5 +51,11 @@ public class UserController {
         user.setId(id);
         user = userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<PostEntity>> findPosts(@PathVariable String id) {
+        UserEntity user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
