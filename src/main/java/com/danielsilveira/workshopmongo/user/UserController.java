@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value="/users")
@@ -14,7 +16,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserEntity>> findAll() {
-        return ResponseEntity.ok().body(userService.findAll());
+    public ResponseEntity<List<UserDTO>> findAll() {
+        List<UserEntity> users = userService.findAll();
+        List<UserDTO> listDto = users.stream().map(UserDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 }
