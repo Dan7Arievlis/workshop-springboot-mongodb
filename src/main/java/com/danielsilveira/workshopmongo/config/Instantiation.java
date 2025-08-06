@@ -1,5 +1,6 @@
 package com.danielsilveira.workshopmongo.config;
 
+import com.danielsilveira.workshopmongo.post.AuthorDTO;
 import com.danielsilveira.workshopmongo.post.PostEntity;
 import com.danielsilveira.workshopmongo.post.PostRepository;
 import com.danielsilveira.workshopmongo.user.UserEntity;
@@ -29,12 +30,13 @@ public class Instantiation implements CommandLineRunner {
         UserEntity alex = new UserEntity(null, "Alex Green", "alex@gmail.com");
         UserEntity bob = new UserEntity(null, "Bob Grey", "bob@gmail.com");
 
+        userRepository.saveAll(List.of(maria, alex, bob));
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-        PostEntity post1 = new PostEntity(null, sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", maria);
-        PostEntity post2 = new PostEntity(null, sdf.parse("23/03/2018"), "Acordei feliz hoje!", "Tenha um ótimo dia!", maria);
+        PostEntity post1 = new PostEntity(null, sdf.parse("21/03/2018"), "Partiu viagem!", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+        PostEntity post2 = new PostEntity(null, sdf.parse("23/03/2018"), "Acordei feliz hoje!", "Tenha um ótimo dia!", new AuthorDTO(maria));
 
-        userRepository.saveAll(List.of(maria, alex, bob));
         postRepository.saveAll(List.of(post1, post2));
     }
 }

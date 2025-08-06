@@ -19,11 +19,11 @@ public class PostEntity implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private UserEntity author;
+    private AuthorDTO author;
 
     public PostEntity() {}
 
-    public PostEntity(String id, Date date, String title, String body, UserEntity author) {
+    public PostEntity(String id, Date date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -64,11 +64,11 @@ public class PostEntity implements Serializable {
         this.body = body;
     }
 
-    public UserEntity getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(UserEntity author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
